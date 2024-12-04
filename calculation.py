@@ -20,5 +20,6 @@ def hexToBinary(hex) :
 def reverseMatrix() :
     return
 
-print(binaryToHex("1001"))
-print(int("1001", 16))
+def printMatrix(matrix) :
+    for el in matrix :
+        print(el)
