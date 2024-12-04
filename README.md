@@ -7,10 +7,10 @@ This code's purpose is to execute the AES algorithm in python.
 - Initial key addition with a first random key.
 
 Then, for each round of the algorithm, except the last one, we will do :
-- _Byte Substitution_
-- _Shift Row_
-- _Mix Columns_
-- _Key addition layer_
+- ***Byte Substitution***
+- ***Shift Row***
+- ***Mix Columns***
+- ***Key addition layer***
 
 <h2>Byte Substitution</h2>
 ...
