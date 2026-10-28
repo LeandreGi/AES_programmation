@@ -29,7 +29,7 @@ Un fichier par étape de l'algorithme, à la racine du dépôt :
 | `ShiftRow.py` | `shiftRows` / `invShiftRows` | fait |
 | `GaloisField.py` | Arithmétique dans GF(2^8) : `xtime`, `gfMultiply` | fait |
 | `MixColumn.py` | `mixColumns` / `invMixColumns` | fait |
-| `CreateKey.py` | Génération de clé, puis expansion de clé (key schedule) | à reprendre |
+| `CreateKey.py` | `generateKey` (avec `secrets`) et expansion de clé `keyExpansion` | fait |
 | `AddRoundKey.py` | `addRoundKey` | fait |
 | `Main.py` | Assemblage : chiffrement et déchiffrement complets | à faire |
 | `tests/` | Tests unitaires, un fichier `test_<module>.py` par module | |
@@ -98,8 +98,5 @@ Si une demande est ambiguë (taille de clé, format d'entrée...), poser la ques
 
 ## Points connus à traiter plus tard
 
-- `CreateKey.py` utilise `random`, qui n'est pas sûr pour générer une clé. Pour un projet de cours,
-  le mentionner ; `secrets.token_bytes` est l'équivalent sûr de la bibliothèque standard.
-- `CreateKey.py` contient un `print` exécuté à l'import, à retirer.
 - `Main.py` est un squelette qui ne fonctionne pas encore (`EncryptedMessage` non défini).
 - Tailles de clé : commencer par AES-128 ; AES-192 et AES-256 éventuellement ensuite.
