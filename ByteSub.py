@@ -17,5 +17,44 @@ S_BOX = [
     [0x8C, 0xA1, 0x89, 0x0D, 0xBF, 0xE6, 0x42, 0x68, 0x41, 0x99, 0x2D, 0x0F, 0xB0, 0x54, 0xBB, 0x16],
 ]
 
-def ByteSub() :
-    return
+def buildInverseSBox(sBox) :
+    """
+    Builds the inverse S-Box : if sBox maps x to y, the inverse maps y back to x.
+    Computing it from S_BOX avoids typing a second table of 256 values by hand.
+    :param list sBox: a 16x16 substitution table.
+    :return: the 16x16 inverse substitution table.
+    """
+    inverse = [[0 for _ in range(16)] for _ in range(16)]
+    for x in range(256) :
+        y = sBox[x >> 4][x & 0x0F]
+        inverse[y >> 4][y & 0x0F] = x
+    return inverse
+
+INV_S_BOX = buildInverseSBox(S_BOX)
+
+def substitute(byte, sBox) :
+    """
+    Looks a byte up in a substitution table.
+    The 4 high bits give the row, the 4 low bits give the column.
+    Example : 0x53 -> row 5, column 3.
+    :param int byte: a byte, between 0 and 255.
+    :param list sBox: a 16x16 substitution table.
+    :return: the substituted byte.
+    """
+    return sBox[byte >> 4][byte & 0x0F]
+
+def subBytes(state) :
+    """
+    Applies the Byte Substitution : every byte of the state is replaced by its value in the S-Box.
+    :param list state: the 4x4 AES state.
+    :return: the substituted state.
+    """
+    return [[substitute(byte, S_BOX) for byte in row] for row in state]
+
+def invSubBytes(state) :
+    """
+    Applies the inverse of the Byte Substitution, using the inverse S-Box.
+    :param list state: the 4x4 AES state.
+    :return: the state before subBytes.
+    """
+    return [[substitute(byte, INV_S_BOX) for byte in row] for row in state]
