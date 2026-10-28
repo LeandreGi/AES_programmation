@@ -30,7 +30,7 @@ Un fichier par étape de l'algorithme, à la racine du dépôt :
 | `GaloisField.py` | Arithmétique dans GF(2^8) : `xtime`, `gfMultiply` | fait |
 | `MixColumn.py` | `mixColumns` / `invMixColumns` | fait |
 | `CreateKey.py` | Génération de clé, puis expansion de clé (key schedule) | à reprendre |
-| (à créer) | `addRoundKey` | à faire |
+| `AddRoundKey.py` | `addRoundKey` | fait |
 | `Main.py` | Assemblage : chiffrement et déchiffrement complets | à faire |
 | `tests/` | Tests unitaires, un fichier `test_<module>.py` par module | |
 
