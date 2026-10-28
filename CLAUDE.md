@@ -31,7 +31,7 @@ Un fichier par étape de l'algorithme, à la racine du dépôt :
 | `MixColumn.py` | `mixColumns` / `invMixColumns` | fait |
 | `CreateKey.py` | `generateKey` (avec `secrets`) et expansion de clé `keyExpansion` | fait |
 | `AddRoundKey.py` | `addRoundKey` | fait |
-| `Main.py` | Assemblage : chiffrement et déchiffrement complets | à faire |
+| `Main.py` | Assemblage : `cipher` / `invCipher` d'un bloc de 16 octets | fait |
 | `tests/` | Tests unitaires, un fichier `test_<module>.py` par module | |
 
 ### Représentation du state
@@ -98,5 +98,6 @@ Si une demande est ambiguë (taille de clé, format d'entrée...), poser la ques
 
 ## Points connus à traiter plus tard
 
-- `Main.py` est un squelette qui ne fonctionne pas encore (`EncryptedMessage` non défini).
-- Tailles de clé : commencer par AES-128 ; AES-192 et AES-256 éventuellement ensuite.
+- `cipher` / `invCipher` chiffrent un seul bloc de 16 octets. Chiffrer un message plus long demande
+  un découpage en blocs, un padding et un mode d'opération (ECB, CBC...).
+- `binaryToHex` dans `calculation.py` n'est plus utilisée.
